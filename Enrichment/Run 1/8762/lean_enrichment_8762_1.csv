@@ -1,0 +1,354 @@
+"","pathway.code","pathway.name","p.value","Annotated","adj_p.value"
+"326","hsa05016","Huntington disease - Homo sapiens (human)",5.89845368486999e-19,274,1.98777889180119e-16
+"325","hsa05014","Amyotrophic lateral sclerosis - Homo sapiens (human)",1.81699914387423e-18,292,3.06164355742807e-16
+"329","hsa05022","Pathways of neurodegeneration - multiple diseases - Homo sapiens (human)",1.66290380502854e-16,439,1.8679952743154e-14
+"23","hsa00190","Oxidative phosphorylation - Homo sapiens (human)",2.17611103582455e-15,125,1.83337354768219e-13
+"323","hsa05010","Alzheimer disease - Homo sapiens (human)",2.37919121656054e-14,348,1.6035748799618e-12
+"328","hsa05020","Prion disease - Homo sapiens (human)",1.10057481206968e-13,260,6.18156186112468e-12
+"324","hsa05012","Parkinson disease - Homo sapiens (human)",4.02840737239536e-12,234,1.93939040642462e-10
+"264","hsa05208","Chemical carcinogenesis - reactive oxygen species - Homo sapiens (human)",9.48129914702199e-12,202,3.99399726568301e-10
+"301","hsa05132","Salmonella infection - Homo sapiens (human)",4.33316197858333e-11,201,1.57666008435836e-09
+"257","hsa04714","Thermogenesis - Homo sapiens (human)",4.67851657079633e-11,180,1.57666008435836e-09
+"136","hsa04668","TNF signaling pathway - Homo sapiens (human)",4.47835545099131e-10,107,1.37200526089461e-08
+"157","hsa04140","Autophagy - animal - Homo sapiens (human)",1.53144739846297e-09,137,4.30081477735017e-08
+"162","hsa04210","Apoptosis - Homo sapiens (human)",1.70963411098197e-09,131,4.43189765693019e-08
+"346","hsa04932","Non-alcoholic fatty liver disease - Homo sapiens (human)",1.90646933794564e-09,149,4.58914404919773e-08
+"340","hsa05415","Diabetic cardiomyopathy - Homo sapiens (human)",9.19855260495135e-09,187,2.0666081519124e-07
+"263","hsa05207","Chemical carcinogenesis - receptor activation - Homo sapiens (human)",6.51743579531068e-07,161,1.31570205296448e-05
+"302","hsa05131","Shigellosis - Homo sapiens (human)",6.85792936194083e-07,237,1.31570205296448e-05
+"178","hsa04613","Neutrophil extracellular trap formation - Homo sapiens (human)",7.02748871019603e-07,93,1.31570205296448e-05
+"269","hsa05210","Colorectal cancer - Homo sapiens (human)",9.13700994603384e-07,82,1.62061702727021e-05
+"284","hsa05222","Small cell lung cancer - Homo sapiens (human)",9.92406490201979e-07,90,1.67220493599033e-05
+"245","hsa04721","Synaptic vesicle cycle - Homo sapiens (human)",1.39481410659372e-06,44,2.2383445424861e-05
+"190","hsa04662","B cell receptor signaling pathway - Homo sapiens (human)",2.65753705852586e-06,79,4.07086358510552e-05
+"189","hsa04657","IL-17 signaling pathway - Homo sapiens (human)",2.94383109016635e-06,65,4.31335251037417e-05
+"154","hsa04145","Phagosome - Homo sapiens (human)",3.74187156651287e-06,100,5.05371164864957e-05
+"135","hsa04064","NF-kappa B signaling pathway - Homo sapiens (human)",3.74904424974004e-06,89,5.05371164864957e-05
+"106","hsa03050","Proteasome - Homo sapiens (human)",5.1955713048101e-06,39,6.55827470382687e-05
+"252","hsa04380","Osteoclast differentiation - Homo sapiens (human)",5.25440406538058e-06,126,6.55827470382687e-05
+"151","hsa04512","ECM-receptor interaction - Homo sapiens (human)",7.68240821178554e-06,87,8.99132713887302e-05
+"275","hsa05221","Acute myeloid leukemia - Homo sapiens (human)",7.80787195817222e-06,67,8.99132713887302e-05
+"303","hsa05135","Yersinia infection - Homo sapiens (human)",8.00414878831426e-06,131,8.99132713887302e-05
+"191","hsa04664","Fc epsilon RI signaling pathway - Homo sapiens (human)",8.75899540205479e-06,62,9.52187564674989e-05
+"40","hsa00230","Purine metabolism - Homo sapiens (human)",9.3349562878069e-06,121,9.83087584059664e-05
+"219","hsa04260","Cardiac muscle contraction - Homo sapiens (human)",1.2567315894909e-05,80,0.000128338953229828
+"102","hsa04141","Protein processing in endoplasmic reticulum - Homo sapiens (human)",2.49667831161715e-05,71,0.000247269784480408
+"286","hsa05166","Human T-cell leukemia virus 1 infection - Homo sapiens (human)",2.56808381507842e-05,176,0.000247269784480408
+"60","hsa00480","Glutathione metabolism - Homo sapiens (human)",3.14371533809503e-05,54,0.000294286685816118
+"180","hsa04621","NOD-like receptor signaling pathway - Homo sapiens (human)",3.35720040060645e-05,160,0.000305777441893074
+"33","hsa00564","Glycerophospholipid metabolism - Homo sapiens (human)",3.61637686541617e-05,94,0.000320715527275066
+"327","hsa05017","Spinocerebellar ataxia - Homo sapiens (human)",4.41686634420685e-05,111,0.000381662553332746
+"186","hsa04660","T cell receptor signaling pathway - Homo sapiens (human)",6.34400149854931e-05,102,0.000534482126252779
+"297","hsa05165","Human papillomavirus infection - Homo sapiens (human)",7.86230432111937e-05,302,0.000646243062492007
+"164","hsa04216","Ferroptosis - Homo sapiens (human)",9.54078592980639e-05,28,0.000765534490082084
+"338","hsa05412","Arrhythmogenic right ventricular cardiomyopathy - Homo sapiens (human)",9.8699698440152e-05,61,0.000773530194751889
+"296","hsa05169","Epstein-Barr virus infection - Homo sapiens (human)",0.000104393027858701,170,0.000799555690645052
+"195","hsa04062","Chemokine signaling pathway - Homo sapiens (human)",0.000111934773368207,187,0.000838267080557458
+"348","hsa04933","AGE-RAGE signaling pathway in diabetic complications - Homo sapiens (human)",0.000174166942704256,97,0.00127596216720292
+"158","hsa04136","Autophagy - other - Homo sapiens (human)",0.000180942073144701,31,0.00129739316276094
+"147","hsa04150","mTOR signaling pathway - Homo sapiens (human)",0.000187632703918422,151,0.00131733794209392
+"11","hsa00030","Pentose phosphate pathway - Homo sapiens (human)",0.000307855135485324,29,0.00207494361317108
+"163","hsa04215","Apoptosis - multiple species - Homo sapiens (human)",0.000307855135485324,29,0.00207494361317108
+"236","hsa04966","Collecting duct acid secretion - Homo sapiens (human)",0.000363226115316669,23,0.00240014119336701
+"268","hsa05235","PD-L1 expression and PD-1 checkpoint pathway in cancer - Homo sapiens (human)",0.000381844834296042,85,0.00247464825303396
+"122","hsa04010","MAPK signaling pathway - Homo sapiens (human)",0.000406695148031597,294,0.00258596726201223
+"267","hsa05231","Choline metabolism in cancer - Homo sapiens (human)",0.000433047942178673,84,0.00270253993544838
+"166","hsa04115","p53 signaling pathway - Homo sapiens (human)",0.000463063040547947,72,0.00283731353935742
+"274","hsa05216","Thyroid cancer - Homo sapiens (human)",0.000479388511365771,37,0.00288489157732616
+"265","hsa05203","Viral carcinogenesis - Homo sapiens (human)",0.000501250962186633,120,0.00296353639047185
+"299","hsa05120","Epithelial cell signaling in Helicobacter pylori infection - Homo sapiens (human)",0.000554457278607788,70,0.00322158798087629
+"210","hsa04935","Growth hormone synthesis, secretion and action - Homo sapiens (human)",0.000600699930938663,113,0.00343111655468355
+"288","hsa05161","Hepatitis B - Homo sapiens (human)",0.00082666955837536,159,0.00459038340956904
+"159","hsa04137","Mitophagy - animal - Homo sapiens (human)",0.000830900261079262,52,0.00459038340956904
+"285","hsa05223","Non-small cell lung cancer - Homo sapiens (human)",0.00094262775083998,70,0.00512363793601731
+"32","hsa00561","Glycerolipid metabolism - Homo sapiens (human)",0.00096848814147255,62,0.00515104423980429
+"282","hsa05213","Endometrial cancer - Homo sapiens (human)",0.000978239855630488,57,0.00515104423980429
+"104","hsa04120","Ubiquitin mediated proteolysis - Homo sapiens (human)",0.00100730771331091,72,0.00517057902789506
+"270","hsa05212","Pancreatic cancer - Homo sapiens (human)",0.00101263565531476,76,0.00517057902789506
+"201","hsa03320","PPAR signaling pathway - Homo sapiens (human)",0.00114322406990589,68,0.00575024644116845
+"185","hsa04612","Antigen processing and presentation - Homo sapiens (human)",0.00132173465955895,50,0.00655036147457894
+"144","hsa04022","cGMP-PKG signaling pathway - Homo sapiens (human)",0.00158880811468583,148,0.00775983093694385
+"150","hsa04061","Viral protein interaction with cytokine and cytokine receptor - Homo sapiens (human)",0.00204395608684877,96,0.00982759316362897
+"311","hsa05145","Toxoplasmosis - Homo sapiens (human)",0.00207050182379127,97,0.00982759316362897
+"63","hsa00512","Mucin type O-glycan biosynthesis - Homo sapiens (human)",0.0024275884662621,35,0.0113624626823657
+"335","hsa05417","Lipid and atherosclerosis - Homo sapiens (human)",0.00262883632024288,198,0.0120400515389718
+"141","hsa04072","Phospholipase D signaling pathway - Homo sapiens (human)",0.00264380953674752,137,0.0120400515389718
+"75","hsa00730","Thiamine metabolism - Homo sapiens (human)",0.00320035769214193,15,0.0143802738966911
+"103","hsa04130","SNARE interactions in vesicular transport - Homo sapiens (human)",0.00344837433420355,20,0.0152908177714026
+"192","hsa04666","Fc gamma R-mediated phagocytosis - Homo sapiens (human)",0.00368683925081535,92,0.0161359068509711
+"168","hsa04510","Focal adhesion - Homo sapiens (human)",0.00379475936338204,200,0.0163953064802532
+"313","hsa05142","Chagas disease - Homo sapiens (human)",0.0040087075758068,100,0.0171004361145176
+"278","hsa05218","Melanoma - Homo sapiens (human)",0.00479606001411956,72,0.0202034028094786
+"305","hsa05134","Legionellosis - Homo sapiens (human)",0.006260193556802,47,0.0260454966499046
+"200","hsa04920","Adipocytokine signaling pathway - Homo sapiens (human)",0.00646073857579803,69,0.0265520597566334
+"336","hsa05418","Fluid shear stress and atherosclerosis - Homo sapiens (human)",0.00696352134301846,126,0.0282735746096051
+"17","hsa00520","Amino sugar and nucleotide sugar metabolism - Homo sapiens (human)",0.00707190996373082,44,0.0283718292592534
+"231","hsa04978","Mineral absorption - Homo sapiens (human)",0.00738874422947858,12,0.0292941977098151
+"227","hsa04974","Protein digestion and absorption - Homo sapiens (human)",0.00838301887409191,34,0.032849736750802
+"232","hsa04962","Vasopressin-regulated water reabsorption - Homo sapiens (human)",0.0100089569173411,36,0.0385396004492705
+"298","hsa05110","Vibrio cholerae infection - Homo sapiens (human)",0.0100637532330439,41,0.0385396004492705
+"235","hsa04964","Proximal tubule bicarbonate reclamation - Homo sapiens (human)",0.0103014620643908,16,0.039006659726963
+"306","hsa05150","Staphylococcus aureus infection - Homo sapiens (human)",0.0105925001488742,33,0.039663028335229
+"317","hsa05323","Rheumatoid arthritis - Homo sapiens (human)",0.0109198834567884,71,0.0404395684059086
+"309","hsa05146","Amoebiasis - Homo sapiens (human)",0.0114979367250227,98,0.0416816874854219
+"253","hsa04211","Longevity regulating pathway - Homo sapiens (human)",0.0115026615315853,88,0.0416816874854219
+"244","hsa04723","Retrograde endocannabinoid signaling - Homo sapiens (human)",0.0116563826565841,108,0.0417893718645622
+"184","hsa04650","Natural killer cell mediated cytotoxicity - Homo sapiens (human)",0.0125311592246816,119,0.0442464659935461
+"281","hsa05215","Prostate cancer - Homo sapiens (human)",0.0126043345263514,90,0.0442464659935461
+"339","hsa05414","Dilated cardiomyopathy - Homo sapiens (human)",0.0130965919258811,85,0.0455005307115663
+"179","hsa04620","Toll-like receptor signaling pathway - Homo sapiens (human)",0.0144055058668285,99,0.0495373007869512
+"304","hsa05133","Pertussis - Homo sapiens (human)",0.0150382497812944,69,0.0511908098615778
+"271","hsa05225","Hepatocellular carcinoma - Homo sapiens (human)",0.0161050719605964,143,0.05427409250721
+"127","hsa04330","Notch signaling pathway - Homo sapiens (human)",0.0169870172952877,59,0.0563255116988853
+"99","hsa03015","mRNA surveillance pathway - Homo sapiens (human)",0.0170480777248852,56,0.0563255116988853
+"233","hsa04960","Aldosterone-regulated sodium reabsorption - Homo sapiens (human)",0.0176961595249506,36,0.0578990850476539
+"283","hsa05224","Breast cancer - Homo sapiens (human)",0.0188909868249149,145,0.0612140630768877
+"138","hsa04068","FoxO signaling pathway - Homo sapiens (human)",0.020500223451862,109,0.0657959552693094
+"259","hsa05202","Transcriptional misregulation in cancer - Homo sapiens (human)",0.0215929408870241,102,0.0686492554615767
+"300","hsa05130","Pathogenic Escherichia coli infection - Homo sapiens (human)",0.0233613551346101,186,0.0735773521529309
+"177","hsa04611","Platelet activation - Homo sapiens (human)",0.0269746454828428,110,0.0841108344889891
+"292","hsa05162","Measles - Homo sapiens (human)",0.0272049880097917,129,0.0841108344889891
+"207","hsa04917","Prolactin signaling pathway - Homo sapiens (human)",0.0274898722754455,67,0.084218972334774
+"142","hsa04071","Sphingolipid signaling pathway - Homo sapiens (human)",0.0298435016081859,107,0.0906059463239517
+"108","hsa03030","DNA replication - Homo sapiens (human)",0.0313912594067894,7,0.0944540573222146
+"212","hsa04919","Thyroid hormone signaling pathway - Homo sapiens (human)",0.0321813520065898,95,0.0959744745683253
+"310","hsa05144","Malaria - Homo sapiens (human)",0.0333025792430699,39,0.0984470982887242
+"312","hsa05140","Leishmaniasis - Homo sapiens (human)",0.0347762448596365,61,0.101909517545196
+"229","hsa04979","Cholesterol metabolism - Homo sapiens (human)",0.035438098492165,24,0.10288011782026
+"132","hsa04370","VEGF signaling pathway - Homo sapiens (human)",0.0357180231008026,56,0.10288011782026
+"146","hsa04152","AMPK signaling pathway - Homo sapiens (human)",0.0373086093116661,111,0.106550858796877
+"57","hsa00440","Phosphonate and phosphinate metabolism - Homo sapiens (human)",0.0424921314738289,6,0.119332069222336
+"109","hsa03410","Base excision repair - Homo sapiens (human)",0.0424921314738289,6,0.119332069222336
+"272","hsa05226","Gastric cancer - Homo sapiens (human)",0.0443979017709453,138,0.123653660304203
+"291","hsa05164","Influenza A - Homo sapiens (human)",0.0448704811842508,127,0.123945509500758
+"220","hsa04261","Adrenergic signaling in cardiomyocytes - Homo sapiens (human)",0.0510425187129203,137,0.139848201676863
+"25","hsa00920","Sulfur metabolism - Homo sapiens (human)",0.0557536867386834,10,0.151524132507551
+"92","hsa00983","Drug metabolism - other enzymes - Homo sapiens (human)",0.0569047468178326,70,0.153415197420877
+"110","hsa03420","Nucleotide excision repair - Homo sapiens (human)",0.0579550831874802,5,0.155006849477626
+"209","hsa04926","Relaxin signaling pathway - Homo sapiens (human)",0.0638441206185148,117,0.169386051973086
+"293","hsa05168","Herpes simplex virus 1 infection - Homo sapiens (human)",0.0643365419957122,127,0.169386051973086
+"202","hsa04929","GnRH secretion - Homo sapiens (human)",0.0679376451502047,48,0.177480514849759
+"24","hsa00910","Nitrogen metabolism - Homo sapiens (human)",0.0798645904566935,4,0.203896719575043
+"96","hsa03010","Ribosome - Homo sapiens (human)",0.0798645904566935,4,0.203896719575043
+"100","hsa03008","Ribosome biogenesis in eukaryotes - Homo sapiens (human)",0.0798645904566935,4,0.203896719575043
+"337","hsa05410","Hypertrophic cardiomyopathy - Homo sapiens (human)",0.0848143097531662,80,0.214905431479827
+"321","hsa05332","Graft-versus-host disease - Homo sapiens (human)",0.0874532871879724,20,0.21974576244929
+"199","hsa04923","Regulation of lipolysis in adipocytes - Homo sapiens (human)",0.0880287178951161,54,0.21974576244929
+"65","hsa00514","Other types of O-glycan biosynthesis - Homo sapiens (human)",0.0894289320007407,35,0.22020854942716
+"183","hsa04625","C-type lectin receptor signaling pathway - Homo sapiens (human)",0.0897355806745546,89,0.22020854942716
+"206","hsa04914","Progesterone-mediated oocyte maturation - Homo sapiens (human)",0.0901744208336739,89,0.22020854942716
+"226","hsa04973","Carbohydrate digestion and absorption - Homo sapiens (human)",0.102364952165699,41,0.247554022975208
+"165","hsa04217","Necroptosis - Homo sapiens (human)",0.102841433876941,105,0.247554022975208
+"81","hsa00785","Lipoic acid metabolism - Homo sapiens (human)",0.11172506106145,3,0.263296122921039
+"113","hsa03450","Non-homologous end-joining - Homo sapiens (human)",0.11172506106145,3,0.263296122921039
+"118","hsa03265","Virion - Lyssavirus - Homo sapiens (human)",0.11172506106145,3,0.263296122921039
+"78","hsa00760","Nicotinate and nicotinamide metabolism - Homo sapiens (human)",0.114528085923834,34,0.268027534418972
+"16","hsa00500","Starch and sucrose metabolism - Homo sapiens (human)",0.124974582457464,32,0.289268186113661
+"211","hsa04918","Thyroid hormone synthesis - Homo sapiens (human)",0.125320935230251,58,0.289268186113661
+"342","hsa04930","Type II diabetes mellitus - Homo sapiens (human)",0.126820322019615,45,0.290737745038166
+"115","hsa03250","Viral life cycle - HIV-1 - Homo sapiens (human)",0.130133817620384,11,0.296318219851821
+"196","hsa04911","Insulin secretion - Homo sapiens (human)",0.134244858848817,70,0.303627633772155
+"181","hsa04622","RIG-I-like receptor signaling pathway - Homo sapiens (human)",0.135284926802293,70,0.303940135549151
+"9","hsa00010","Glycolysis / Gluconeogenesis - Homo sapiens (human)",0.139154012114418,65,0.310562265447411
+"277","hsa05217","Basal cell carcinoma - Homo sapiens (human)",0.141463680456821,62,0.313639870486504
+"243","hsa04730","Long-term depression - Homo sapiens (human)",0.142542672277285,56,0.313780330512849
+"280","hsa05219","Bladder cancer - Homo sapiens (human)",0.14338923115424,40,0.313780330512849
+"107","hsa03018","RNA degradation - Homo sapiens (human)",0.146238034355255,24,0.317949790824006
+"87","hsa00900","Terpenoid backbone biosynthesis - Homo sapiens (human)",0.149132007163506,21,0.32216337444937
+"173","hsa04814","Motor proteins - Homo sapiens (human)",0.154513232887708,101,0.331662162313105
+"208","hsa04921","Oxytocin signaling pathway - Homo sapiens (human)",0.161240489840395,138,0.343911677697551
+"29","hsa00100","Steroid biosynthesis - Homo sapiens (human)",0.168889364508674,17,0.357960476977503
+"112","hsa03440","Homologous recombination - Homo sapiens (human)",0.17117023771902,19,0.359439228557094
+"322","hsa05340","Primary immunodeficiency - Homo sapiens (human)",0.171720224918968,26,0.359439228557094
+"290","hsa05171","Coronavirus disease - COVID-19 - Homo sapiens (human)",0.176923675993893,135,0.368044930925568
+"105","hsa04122","Sulfur relay system - Homo sapiens (human)",0.182691704720526,6,0.377712297489677
+"98","hsa03013","Nucleocytoplasmic transport - Homo sapiens (human)",0.190346236703174,12,0.391138303469328
+"234","hsa04961","Endocrine and other factor-regulated calcium reabsorption - Homo sapiens (human)",0.19645650081821,40,0.401247519852951
+"167","hsa04218","Cellular senescence - Homo sapiens (human)",0.204383380309116,128,0.414922886531157
+"222","hsa04970","Salivary secretion - Homo sapiens (human)",0.213316273321943,63,0.428087578169873
+"187","hsa04658","Th1 and Th2 cell differentiation - Homo sapiens (human)",0.214894627329854,74,0.428087578169873
+"26","hsa00061","Fatty acid biosynthesis - Homo sapiens (human)",0.21707402322572,17,0.428087578169873
+"155","hsa04142","Lysosome - Homo sapiens (human)",0.217080092653313,63,0.428087578169873
+"145","hsa04151","PI3K-Akt signaling pathway - Homo sapiens (human)",0.2172195129586,338,0.428087578169873
+"171","hsa04540","Gap junction - Homo sapiens (human)",0.226169149996096,86,0.443133741562118
+"85","hsa00860","Porphyrin metabolism - Homo sapiens (human)",0.230766984536302,32,0.449528750223895
+"61","hsa00510","N-Glycan biosynthesis - Homo sapiens (human)",0.232616272354977,49,0.450526918296708
+"80","hsa00780","Biotin metabolism - Homo sapiens (human)",0.241220505165288,1,0.45794489537447
+"101","hsa03060","Protein export - Homo sapiens (human)",0.241220505165288,1,0.45794489537447
+"111","hsa03430","Mismatch repair - Homo sapiens (human)",0.241220505165288,1,0.45794489537447
+"279","hsa05211","Renal cell carcinoma - Homo sapiens (human)",0.241881873521233,66,0.45794489537447
+"314","hsa05143","African trypanosomiasis - Homo sapiens (human)",0.247796686583612,31,0.466522253512163
+"143","hsa04024","cAMP signaling pathway - Homo sapiens (human)",0.264043764808205,179,0.490590684310116
+"41","hsa00240","Pyrimidine metabolism - Homo sapiens (human)",0.264340323642531,55,0.490590684310116
+"160","hsa04110","Cell cycle - Homo sapiens (human)",0.265036324146701,137,0.490590684310116
+"295","hsa05167","Kaposi sarcoma-associated herpesvirus infection - Homo sapiens (human)",0.267655855700193,181,0.490590684310116
+"174","hsa04810","Regulation of actin cytoskeleton - Homo sapiens (human)",0.267859602115909,227,0.490590684310116
+"76","hsa00740","Riboflavin metabolism - Homo sapiens (human)",0.283154477695097,8,0.515800318828367
+"182","hsa04623","Cytosolic DNA-sensing pathway - Homo sapiens (human)",0.291711801863285,49,0.528531597999608
+"289","hsa05160","Hepatitis C - Homo sapiens (human)",0.298454313186349,149,0.537856168683421
+"345","hsa04936","Alcoholic liver disease - Homo sapiens (human)",0.304229540070003,134,0.545347632997825
+"137","hsa04066","HIF-1 signaling pathway - Homo sapiens (human)",0.310417772146891,103,0.553496239224879
+"246","hsa04722","Neurotrophin signaling pathway - Homo sapiens (human)",0.315357859972623,119,0.558997633085782
+"260","hsa05206","MicroRNAs in cancer - Homo sapiens (human)",0.316820616971467,126,0.558997633085782
+"203","hsa04912","GnRH signaling pathway - Homo sapiens (human)",0.320325283861183,90,0.559402443330553
+"225","hsa04976","Bile secretion - Homo sapiens (human)",0.320369945290198,58,0.559402443330553
+"10","hsa00020","Citrate cycle (TCA cycle) - Homo sapiens (human)",0.325412670965933,29,0.565278711935667
+"20","hsa00640","Propanoate metabolism - Homo sapiens (human)",0.329786714912488,32,0.569939091925684
+"213","hsa04928","Parathyroid hormone synthesis, secretion and action - Homo sapiens (human)",0.351328752667694,78,0.604070355352107
+"316","hsa05322","Systemic lupus erythematosus - Homo sapiens (human)",0.365212013423243,41,0.623710751618808
+"287","hsa05170","Human immunodeficiency virus 1 infection - Homo sapiens (human)",0.366453201247846,176,0.623710751618808
+"30","hsa00120","Primary bile acid biosynthesis - Homo sapiens (human)",0.384452129446373,17,0.651057123735818
+"347","hsa04931","Insulin resistance - Homo sapiens (human)",0.388298348867622,94,0.654282717841944
+"15","hsa00053","Ascorbate and aldarate metabolism - Homo sapiens (human)",0.39646266222937,23,0.664716005827351
+"266","hsa05230","Central carbon metabolism in cancer - Homo sapiens (human)",0.427994719469085,64,0.71403079436179
+"125","hsa04015","Rap1 signaling pathway - Homo sapiens (human)",0.434303989666451,188,0.720987411416719
+"315","hsa05310","Asthma - Homo sapiens (human)",0.450479536597186,12,0.744174528594371
+"95","hsa03040","Spliceosome - Homo sapiens (human)",0.46043233949856,11,0.756905845907389
+"62","hsa00513","Various types of N-glycan biosynthesis - Homo sapiens (human)",0.464282998072092,33,0.759530924030558
+"255","hsa04710","Circadian rhythm - Homo sapiens (human)",0.468059003868927,33,0.762009102917045
+"341","hsa05416","Viral myocarditis - Homo sapiens (human)",0.474369076872114,30,0.765716447677732
+"116","hsa03260","Virion - Human immunodeficiency virus - Homo sapiens (human)",0.475301537736191,3,0.765716447677732
+"188","hsa04659","Th17 cell differentiation - Homo sapiens (human)",0.47715268252915,87,0.765716447677732
+"119","hsa03266","Virion - Herpesvirus - Homo sapiens (human)",0.47973432423828,5,0.766210745347394
+"258","hsa05200","Pathways in cancer - Homo sapiens (human)",0.488597413017688,516,0.776685510315853
+"254","hsa04213","Longevity regulating pathway - multiple species - Homo sapiens (human)",0.493959110667655,59,0.781522161009388
+"58","hsa00450","Selenocompound metabolism - Homo sapiens (human)",0.505505195350499,17,0.796052573986533
+"249","hsa04742","Taste transduction - Homo sapiens (human)",0.511969738808305,31,0.802482799899529
+"13","hsa00051","Fructose and mannose metabolism - Homo sapiens (human)",0.517276058818342,32,0.806021606822894
+"294","hsa05163","Human cytomegalovirus infection - Homo sapiens (human)",0.519010945639668,209,0.806021606822894
+"276","hsa05220","Chronic myeloid leukemia - Homo sapiens (human)",0.528257143806677,76,0.816617694783716
+"194","hsa04672","Intestinal immune network for IgA production - Homo sapiens (human)",0.536020865227714,26,0.824835760647212
+"261","hsa05205","Proteoglycans in cancer - Homo sapiens (human)",0.539565347774807,181,0.8265160100005
+"175","hsa04640","Hematopoietic cell lineage - Homo sapiens (human)",0.54745015324457,69,0.834799554947602
+"239","hsa04725","Cholinergic synapse - Homo sapiens (human)",0.55302621454477,93,0.839503758115259
+"307","hsa05152","Tuberculosis - Homo sapiens (human)",0.57309936786415,144,0.866073932601877
+"273","hsa05214","Glioma - Homo sapiens (human)",0.596896515825464,75,0.898009490326703
+"224","hsa04972","Pancreatic secretion - Homo sapiens (human)",0.625642426068178,73,0.937073322599893
+"330","hsa05030","Cocaine addiction - Homo sapiens (human)",0.640648575177446,42,0.955303406348669
+"205","hsa04915","Estrogen signaling pathway - Homo sapiens (human)",0.658522633085723,97,0.972296721639678
+"97","hsa00970","Aminoacyl-tRNA biosynthesis - Homo sapiens (human)",0.658949918333607,7,0.972296721639678
+"120","hsa03267","Virion - Adenovirus - Homo sapiens (human)",0.663194257871568,2,0.972296721639678
+"217","hsa04925","Aldosterone synthesis and secretion - Homo sapiens (human)",0.663585299635388,80,0.972296721639678
+"215","hsa04924","Renin secretion - Homo sapiens (human)",0.669347303875687,58,0.97649368574072
+"230","hsa04977","Vitamin digestion and absorption - Homo sapiens (human)",0.688380026013646,5,0.999931330890512
+"50","hsa00340","Histidine metabolism - Homo sapiens (human)",0.69410123530217,22,1
+"48","hsa00220","Arginine biosynthesis - Homo sapiens (human)",0.700178012984203,16,1
+"198","hsa04922","Glucagon signaling pathway - Homo sapiens (human)",0.707295633769099,95,1
+"349","hsa04934","Cushing syndrome - Homo sapiens (human)",0.713794105078385,132,1
+"94","hsa03022","Basal transcription factors - Homo sapiens (human)",0.724264720814043,4,1
+"140","hsa04070","Phosphatidylinositol signaling system - Homo sapiens (human)",0.726109156059152,97,1
+"27","hsa00062","Fatty acid elongation - Homo sapiens (human)",0.727067881090754,26,1
+"70","hsa00563","Glycosylphosphatidylinositol (GPI)-anchor biosynthesis - Homo sapiens (human)",0.742301601084951,18,1
+"139","hsa04020","Calcium signaling pathway - Homo sapiens (human)",0.754093474655043,214,1
+"56","hsa00430","Taurine and hypotaurine metabolism - Homo sapiens (human)",0.755321986563246,16,1
+"320","hsa05330","Allograft rejection - Homo sapiens (human)",0.755321986563246,16,1
+"250","hsa04750","Inflammatory mediator regulation of TRP channels - Homo sapiens (human)",0.766797851875221,81,1
+"77","hsa00750","Vitamin B6 metabolism - Homo sapiens (human)",0.767145156379966,6,1
+"88","hsa00232","Caffeine metabolism - Homo sapiens (human)",0.767145156379966,6,1
+"14","hsa00052","Galactose metabolism - Homo sapiens (human)",0.767410358346749,31,1
+"218","hsa04927","Cortisol synthesis and secretion - Homo sapiens (human)",0.76898127556067,53,1
+"114","hsa03460","Fanconi anemia pathway - Homo sapiens (human)",0.777401035162342,9,1
+"59","hsa00470","D-Amino acid metabolism - Homo sapiens (human)",0.792797590399787,5,1
+"223","hsa04971","Gastric acid secretion - Homo sapiens (human)",0.828146923191326,66,1
+"49","hsa00330","Arginine and proline metabolism - Homo sapiens (human)",0.835848033095382,49,1
+"153","hsa04144","Endocytosis - Homo sapiens (human)",0.836345079662009,129,1
+"343","hsa04940","Type I diabetes mellitus - Homo sapiens (human)",0.837973495171492,17,1
+"12","hsa00040","Pentose and glucuronate interconversions - Homo sapiens (human)",0.849070886131813,26,1
+"133","hsa04371","Apelin signaling pathway - Homo sapiens (human)",0.855331834867575,123,1
+"55","hsa00410","beta-Alanine metabolism - Homo sapiens (human)",0.862356576301852,31,1
+"308","hsa05100","Bacterial invasion of epithelial cells - Homo sapiens (human)",0.86492871384979,75,1
+"79","hsa00770","Pantothenate and CoA biosynthesis - Homo sapiens (human)",0.86666577607978,21,1
+"241","hsa04726","Serotonergic synapse - Homo sapiens (human)",0.876167918367643,88,1
+"18","hsa00620","Pyruvate metabolism - Homo sapiens (human)",0.879001582535935,47,1
+"130","hsa04390","Hippo signaling pathway - Homo sapiens (human)",0.88327160551034,129,1
+"221","hsa04270","Vascular smooth muscle contraction - Homo sapiens (human)",0.886952861239499,130,1
+"44","hsa00270","Cysteine and methionine metabolism - Homo sapiens (human)",0.896543484017522,51,1
+"161","hsa04114","Oocyte meiosis - Homo sapiens (human)",0.89857106593573,119,1
+"262","hsa05204","Chemical carcinogenesis - DNA adducts - Homo sapiens (human)",0.899706517940255,54,1
+"45","hsa00280","Valine, leucine and isoleucine degradation - Homo sapiens (human)",0.901753251927093,48,1
+"237","hsa04724","Glutamatergic synapse - Homo sapiens (human)",0.911421143202023,77,1
+"131","hsa04392","Hippo signaling pathway - multiple species - Homo sapiens (human)",0.917200464272866,5,1
+"332","hsa05032","Morphine addiction - Homo sapiens (human)",0.917928172111851,63,1
+"28","hsa00071","Fatty acid degradation - Homo sapiens (human)",0.917928219423245,41,1
+"121","hsa02010","ABC transporters - Homo sapiens (human)",0.918816196896917,7,1
+"73","hsa00604","Glycosphingolipid biosynthesis - ganglio series - Homo sapiens (human)",0.921195325341732,15,1
+"128","hsa04340","Hedgehog signaling pathway - Homo sapiens (human)",0.927151680516235,51,1
+"238","hsa04727","GABAergic synapse - Homo sapiens (human)",0.932377311442075,53,1
+"34","hsa00565","Ether lipid metabolism - Homo sapiens (human)",0.932980899470252,44,1
+"22","hsa00562","Inositol phosphate metabolism - Homo sapiens (human)",0.933344890422221,73,1
+"36","hsa00590","Arachidonic acid metabolism - Homo sapiens (human)",0.933944452069542,57,1
+"214","hsa04916","Melanogenesis - Homo sapiens (human)",0.935174152822104,100,1
+"176","hsa04610","Complement and coagulation cascades - Homo sapiens (human)",0.93846572716619,55,1
+"69","hsa00531","Glycosaminoglycan degradation - Homo sapiens (human)",0.938707126856812,19,1
+"129","hsa04350","TGF-beta signaling pathway - Homo sapiens (human)",0.948099900464934,91,1
+"172","hsa04550","Signaling pathways regulating pluripotency of stem cells - Homo sapiens (human)",0.949832622559743,106,1
+"156","hsa04146","Peroxisome - Homo sapiens (human)",0.952040207055014,38,1
+"197","hsa04910","Insulin signaling pathway - Homo sapiens (human)",0.956674283068345,136,1
+"39","hsa01040","Biosynthesis of unsaturated fatty acids - Homo sapiens (human)",0.95779814075867,25,1
+"74","hsa00511","Other glycan degradation - Homo sapiens (human)",0.970954394053836,9,1
+"193","hsa04670","Leukocyte transendothelial migration - Homo sapiens (human)",0.973057723829168,107,1
+"240","hsa04728","Dopaminergic synapse - Homo sapiens (human)",0.977085039552073,120,1
+"89","hsa00524","Neomycin, kanamycin and gentamicin biosynthesis - Homo sapiens (human)",0.977715956778318,5,1
+"216","hsa04614","Renin-angiotensin system - Homo sapiens (human)",0.978479532911786,21,1
+"228","hsa04975","Fat digestion and absorption - Homo sapiens (human)",0.979542738771237,32,1
+"123","hsa04012","ErbB signaling pathway - Homo sapiens (human)",0.979830333880932,84,1
+"169","hsa04520","Adherens junction - Homo sapiens (human)",0.982964258097489,85,1
+"247","hsa04744","Phototransduction - Homo sapiens (human)",0.983425623709369,27,1
+"52","hsa00360","Phenylalanine metabolism - Homo sapiens (human)",0.985903546775435,16,1
+"152","hsa04514","Cell adhesion molecules - Homo sapiens (human)",0.988654073417638,82,1
+"319","hsa05321","Inflammatory bowel disease - Homo sapiens (human)",0.989785606376147,45,1
+"86","hsa00130","Ubiquinone and other terpenoid-quinone biosynthesis - Homo sapiens (human)",0.990963266388239,6,1
+"204","hsa04913","Ovarian steroidogenesis - Homo sapiens (human)",0.993299529708101,44,1
+"148","hsa04080","Neuroactive ligand-receptor interaction - Homo sapiens (human)",0.993534382778256,167,1
+"21","hsa00650","Butanoate metabolism - Homo sapiens (human)",0.994305423585373,24,1
+"333","hsa05033","Nicotine addiction - Homo sapiens (human)",0.995272654577485,10,1
+"334","hsa05034","Alcoholism - Homo sapiens (human)",0.995763829551067,97,1
+"91","hsa00982","Drug metabolism - cytochrome P450 - Homo sapiens (human)",0.996110452045524,61,1
+"37","hsa00591","Linoleic acid metabolism - Homo sapiens (human)",0.996557891358016,26,1
+"83","hsa00670","One carbon pool by folate - Homo sapiens (human)",0.997312907910124,19,1
+"38","hsa00592","alpha-Linolenic acid metabolism - Homo sapiens (human)",0.997876796730129,22,1
+"19","hsa00630","Glyoxylate and dicarboxylate metabolism - Homo sapiens (human)",0.998007410881735,30,1
+"126","hsa04310","Wnt signaling pathway - Homo sapiens (human)",0.998079795574682,162,1
+"124","hsa04014","Ras signaling pathway - Homo sapiens (human)",0.998452669801013,209,1
+"242","hsa04720","Long-term potentiation - Homo sapiens (human)",0.998531825439791,67,1
+"256","hsa04713","Circadian entrainment - Homo sapiens (human)",0.998714261632244,85,1
+"68","hsa00533","Glycosaminoglycan biosynthesis - keratan sulfate - Homo sapiens (human)",0.998773184902625,9,1
+"42","hsa00250","Alanine, aspartate and glutamate metabolism - Homo sapiens (human)",0.998856504873476,35,1
+"170","hsa04530","Tight junction - Homo sapiens (human)",0.998907824818558,163,1
+"72","hsa00603","Glycosphingolipid biosynthesis - globo and isoglobo series - Homo sapiens (human)",0.999019336526072,14,1
+"331","hsa05031","Amphetamine addiction - Homo sapiens (human)",0.999216067245104,63,1
+"54","hsa00400","Phenylalanine, tyrosine and tryptophan biosynthesis - Homo sapiens (human)",0.999267239271795,6,1
+"90","hsa00980","Metabolism of xenobiotics by cytochrome P450 - Homo sapiens (human)",0.999539007530054,64,1
+"46","hsa00290","Valine, leucine and isoleucine biosynthesis - Homo sapiens (human)",0.999555553820562,4,1
+"53","hsa00380","Tryptophan metabolism - Homo sapiens (human)",0.999690063439129,41,1
+"149","hsa04060","Cytokine-cytokine receptor interaction - Homo sapiens (human)",0.999710602446116,254,1
+"344","hsa04950","Maturity onset diabetes of the young - Homo sapiens (human)",0.999774719468656,21,1
+"64","hsa00515","Mannose type O-glycan biosynthesis - Homo sapiens (human)",0.999888223690818,7,1
+"82","hsa00790","Folate biosynthesis - Homo sapiens (human)",0.999973928694836,26,1
+"134","hsa04630","JAK-STAT signaling pathway - Homo sapiens (human)",0.999994091669135,165,1
+"318","hsa05320","Autoimmune thyroid disease - Homo sapiens (human)",0.999999787414244,30,1
+"35","hsa00600","Sphingolipid metabolism - Homo sapiens (human)",0.999999886671947,49,1
+"51","hsa00350","Tyrosine metabolism - Homo sapiens (human)",0.999999966817462,36,1
+"251","hsa04360","Axon guidance - Homo sapiens (human)",0.999999989805613,168,1
+"43","hsa00260","Glycine, serine and threonine metabolism - Homo sapiens (human)",0.999999999318753,38,1
+"31","hsa00140","Steroid hormone biosynthesis - Homo sapiens (human)",0.999999999414422,53,1
+"47","hsa00310","Lysine degradation - Homo sapiens (human)",0.999999999988365,61,1
+"71","hsa00601","Glycosphingolipid biosynthesis - lacto and neolacto series - Homo sapiens (human)",0.999999999999909,27,1
+"84","hsa00830","Retinol metabolism - Homo sapiens (human)",1,57,1
+"248","hsa04740","Olfactory transduction - Homo sapiens (human)",1,118,1
+"1","hsa01100","Metabolic pathways - Homo sapiens (human)",NA,0,NA
+"2","hsa01200","Carbon metabolism - Homo sapiens (human)",NA,0,NA
+"3","hsa01210","2-Oxocarboxylic acid metabolism - Homo sapiens (human)",NA,0,NA
+"4","hsa01212","Fatty acid metabolism - Homo sapiens (human)",NA,0,NA
+"5","hsa01230","Biosynthesis of amino acids - Homo sapiens (human)",NA,0,NA
+"6","hsa01232","Nucleotide metabolism - Homo sapiens (human)",NA,0,NA
+"7","hsa01250","Biosynthesis of nucleotide sugars - Homo sapiens (human)",NA,0,NA
+"8","hsa01240","Biosynthesis of cofactors - Homo sapiens (human)",NA,0,NA
+"66","hsa00532","Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate - Homo sapiens (human)",NA,0,NA
+"67","hsa00534","Glycosaminoglycan biosynthesis - heparan sulfate / heparin - Homo sapiens (human)",NA,0,NA
+"93","hsa03020","RNA polymerase - Homo sapiens (human)",NA,0,NA
+"117","hsa03264","Virion - Flavivirus - Homo sapiens (human)",NA,0,NA
+"350","hsa01521","EGFR tyrosine kinase inhibitor resistance - Homo sapiens (human)",NA,0,NA
+"351","hsa01524","Platinum drug resistance - Homo sapiens (human)",NA,0,NA
+"352","hsa01523","Antifolate resistance - Homo sapiens (human)",NA,0,NA
+"353","hsa01522","Endocrine resistance - Homo sapiens (human)",NA,0,NA
