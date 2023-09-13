@@ -1,4 +1,12 @@
 source("ant_colony.R")
+
+library(dplyr)
+library(ggplot2)
+library(limma) # DEA tool / GS dependency
+library(LEANR) # LEAN package
+library(doMC) # LEAN dependency
+library(annotate) #map NCBI Gene IDs to gene symbols
+library(GSAR) # p53 data
 library(GSEABenchmarkeR) # GSEABenchmark data
 library(org.Hs.eg.db)
 
@@ -50,8 +58,6 @@ int_network <- igraph::graph_from_adjacency_matrix(adj_mat, mode = 'undirected')
 diam <- diameter(int_network)
 
 limma_res <- acoCalcGeneTStats(df, class_labels, 100, seed)
-hist(limma_res$complete_res$adj.P.Val, main = "Histogram of Limma adjusted p-values for p53 dataset")
-hist(limma_res$complete_res$t, main = "Histogram of Limma moderated t-statistics for p53 dataset")
 limma_adj_pvals <- limma_res$complete_res$adj.P.Val
 names(limma_adj_pvals) <- rownames(limma_res$complete_res)
 
@@ -153,193 +159,6 @@ min_stats_new <- min_stats %>% mutate(FC = apply(aco_df[,!as.logical(as.numeric(
                                       #BH_adj_p = p.adjust(!!as.name(apply_BH_to), method = "BH", n = length(!!as.name(apply_BH_to))*k) #which adjustment to use?
 )
 
-
-####################################################
-#######   Using DOSE and DO pathways        ########
-####################################################
-
-#DO enrichment
-#install.packages("DOSE")
-library(DOSE)
-
-#if (!require("BiocManager", quietly = TRUE))
-#  install.packages("BiocManager")
-
-#BiocManager::install("org.Hs.eg.db")
-#BiocManager::install("geneset")
-#BiocManager::install("GSEABenchmarkeR")
-#BiocManager::install("clusterProfiler")
-#BiocManager::install("KEGG.db")
-
-library(org.Hs.eg.db)
-
-#aco <- readRDS(file = "aco_sig_genes_20291_25.rds")
-aco <- rownames(min_stats_new %>% filter(adj_p_fishers <= cutoff) %>% arrange(adj_p_fishers))
-gs <- gs_modules$gene.id[vapply(gs_modules$p.Fisher, FUN = function(x){min(x*diam,1)}, FUN.VALUE = 1) <= cutoff]
-universe_genes <- names(aco_modules)
-#gs <- readRDS(file = "gs_sig_genes_20291.rds")
-#universe_genes <- readRDS(file = "universe_genes_20291.rds")
-
-
-universe_genes
-
-aco_entrez <- mapIds(org.Hs.eg.db,aco,'ENTREZID','SYMBOL')
-gs_entrez <- mapIds(org.Hs.eg.db,gs,'ENTREZID','SYMBOL')
-universe_entrez <- mapIds(org.Hs.eg.db,universe_genes,'ENTREZID','SYMBOL')
-
-enr_aco <- enrichDO(
-  aco_entrez,
-  ont = "DO",
-  pvalueCutoff = 0.05,
-  pAdjustMethod = "BH",
-  universe = universe_entrez,
-  minGSSize = 10,
-  maxGSSize = 500,
-  qvalueCutoff = 0.2,
-  readable = TRUE
-)
-
-enr_gs <- enrichDO(
-  gs_entrez,
-  ont = "DO",
-  pvalueCutoff = 0.05,
-  pAdjustMethod = "bonferroni",
-  universe = universe_entrez,
-  minGSSize = 10,
-  maxGSSize = 500,
-  qvalueCutoff = 0.2,
-  readable = TRUE
-)
-
-enr_aco@result[["p.adjust"]]
-enr_aco@result[["Description"]][1:sum(enr_aco@result[["p.adjust"]] <= 0.05)]
-which(enr_aco@result[["ID"]] == "DOID:11054")
-
-enr_gs@result[["p.adjust"]]
-enr_gs@result[["Description"]][1:sum(enr_gs@result[["p.adjust"]] <= 0.05)]
-which(enr_gs@result[["ID"]] == "DOID:11054")
-
-####################################################
-#######   Using DOSE and DGN pathways        #######
-####################################################
-
-enr_dgn__gs <- enrichDGN(
-  gs_entrez,
-  pvalueCutoff = 0.05,
-  pAdjustMethod = "BH",
-  universe = universe_entrez,
-  minGSSize = 10,
-  maxGSSize = 500,
-  qvalueCutoff = 0.2,
-  readable = TRUE
-)
-
-enr_dgn__gs@result[["p.adjust"]]
-enr_dgn__gs@result[["Description"]][1:min(200, sum(enr_dgn__gs@result[["p.adjust"]] <= 0.05))]
-which(enr_dgn__gs@result[["ID"]] == "C2145472")
-
-
-enr_dgn_aco <- enrichDGN(
-  aco_entrez,
-  pvalueCutoff = 0.05,
-  pAdjustMethod = "BH",
-  universe = universe_entrez,
-  minGSSize = 10,
-  maxGSSize = 500,
-  qvalueCutoff = 0.2,
-  readable = TRUE
-)
-
-enr_dgn_aco@result[["p.adjust"]]
-sum(enr_dgn_aco@result[["p.adjust"]] <= 0.05)
-enr_dgn_aco@result[["Description"]][1:200]#sum(enr_dgn_aco@result[["p.adjust"]] <= 0.05)]
-which(enr_dgn_aco@result[["ID"]] == "C2145472")
-
-####################################################
-#######   Using clusterProfiler and KEGG pathways ##
-####################################################
-
-library(clusterProfiler)
-
-enr_kegg_aco <- clusterProfiler::enrichKEGG(
-  gene = (aco_entrez)[!is.na(aco_entrez)],
-  organism = "hsa",
-  keyType = "kegg",
-  minGSSize = 10,
-  maxGSSize = 500,
-  pvalueCutoff = 0.05,
-  pAdjustMethod = "BH",
-  universe = universe_entrez,
-  use_internal_data = FALSE
-)
-
-enr_kegg_aco@result[["p.adjust"]]
-sum(enr_kegg_aco@result[["p.adjust"]] <= 0.05)
-enr_kegg_aco@result[["Description"]][1:sum(enr_kegg_aco@result[["p.adjust"]] <= 0.05)]
-
-which(enr_kegg_aco@result[["Description"]] == "Non-small cell lung cancer")
-which(enr_kegg_aco@result[["Description"]] == "Acute myeloid leukemia")
-which(enr_kegg_aco@result[["Description"]] == "p53 signaling pathway")
-
-enr_kegg_gs <- clusterProfiler::enrichKEGG(
-  gene = (gs_entrez)[!is.na(gs_entrez)],
-  organism = "hsa",
-  keyType = "ncbi-geneid",
-  minGSSize = 10,
-  maxGSSize = 500,
-  pvalueCutoff = 0.05,
-  pAdjustMethod = "BH",
-  universe = universe_entrez,
-  use_internal_data = FALSE
-)
-
-enr_kegg_gs@result[["p.adjust"]]
-sum(enr_kegg_gs@result[["p.adjust"]] <= 0.05)
-enr_kegg_gs@result[["Description"]][1:sum(enr_kegg_gs@result[["p.adjust"]] <= 0.05)]
-
-####################################################
-#######   Using GSEABenchmarkeR and KEGG pathways ##
-####################################################
-
-
-library(GSEABenchmarkeR) # GSEABenchmark data
-library(geneset) #KEGG pathway gene sets
-
-res_df <- min_stats_new %>% mutate(limma.STAT = fisher_stat, PVAL = p_fishers, ADJ.PVAL = adj_p_fishers, ADJ.PVAL_filter = ADJ.PVAL <= cutoff, PVAL_filter = PVAL <= cutoff) %>% filter(!!as.name(filter_by)) %>% dplyr::select(c(FC, limma.STAT, PVAL, ADJ.PVAL))
-df_sig <- df[rownames(df) %in% rownames(res_df),]
-
-symbol_to_uid <- names(uid_to_symbol)
-names(symbol_to_uid) <- gene_symbols
-rownames(res_df) <- symbol_to_uid[rownames(res_df)]
-rownames(df_sig) <- symbol_to_uid[rownames(df_sig)]
-
-dim(res_df)
-
-res_eset <- SummarizedExperiment(assays = list(exprs = df_sig), rowData = DataFrame(res_df), colData = colData(eset), metadata = metadata(eset))
-#hsa_kegg <- KEGGREST::keggList("hsa")
-#hsapathway <- EnrichmentBrowser::downloadPathways("hsa")
-#kegg.gs <- EnrichmentBrowser::getGenesets('hsa', db = c('kegg'), cache = FALSE)
-genesets_kegg <- geneset::getKEGG(org = "hsa", category = "pathway")
-
-kegg_pathways <- genesets_kegg$geneset_name$name
-names(kegg_pathways) <- genesets_kegg$geneset_name$id
-kegg_gs <- list()
-for(row in 1:nrow(genesets_kegg$geneset)){
-  current_pathway_id <- genesets_kegg$geneset[row,1]
-  current_gene <- genesets_kegg$geneset[row,2]
-  kegg_gs[[kegg_pathways[current_pathway_id]]] <- c(kegg.gs[[kegg_pathways[current_pathway_id]]], current_gene)
-}
-
-
-res_EA <- runEA(res_eset, methods = 'gsa', gs = kegg_gs, padj.method = 'BH')
-
-n_sig_pathways <- sum(res_EA$gsa[[dataset]]$ranking$ADJ.PVAL <= 0.05)
-n_sig_pathways
-
-res_EA$gsa[[dataset]]$ranking$GENE.SET[1:n_sig_pathways]
-
-which(res_EA$padog[[dataset]]$ranking$GENE.SET == "Parkinson disease")
-
 ####################################################
 #######   Using Wilcoxon Rank and KEGG pathways ####
 ####################################################
@@ -362,13 +181,15 @@ genes.by.pathway <- readRDS('genes_by_pathway.rds')
 
 geneList <- min_stats_new$adj_p_fishers
 names(geneList) <- rownames(min_stats_new)
-geneList <- min_stats_new$p_lean
-names(geneList) <- rownames(min_stats_new)
-geneList <- min_stats_new$p_des
-names(geneList) <- rownames(min_stats_new)
-geneList <- vapply(gs_modules$p.Fisher, FUN = function(x){min(x*diam,1)}, FUN.VALUE = 1)
-names(geneList) <- gs_modules$gene.id
+## Uncomment appropriate lines to run enrichment for other methods:
+#geneList <- min_stats_new$p_lean
+#names(geneList) <- rownames(min_stats_new)
+#geneList <- min_stats_new$p_des
+#names(geneList) <- rownames(min_stats_new)
+#geneList <- vapply(gs_modules$p.Fisher, FUN = function(x){min(x*diam,1)}, FUN.VALUE = 1)
+#names(geneList) <- gs_modules$gene.id
 # Wilcoxon test for each pathway
+
 pVals.by.pathway <- t(sapply(names(genes.by.pathway),
                              function(pathway) {
                                pathway.genes <- genes.by.pathway[[pathway]]
@@ -436,53 +257,27 @@ lean_geneList <- min_stats_new$p_lean
 names(lean_geneList) <- rownames(min_stats_new)
 aco_geneList <- min_stats_new$adj_p_fishers
 names(aco_geneList) <- rownames(min_stats_new)
-aco_limma_geneList <- min_stats_new$p_combs
-names(aco_limma_geneList) <- rownames(min_stats_new)
 gs_geneList <- vapply(gs_modules$p.Fisher, FUN = function(x){min(x*diam,1)}, FUN.VALUE = 1)
 names(gs_geneList) <- gs_modules$gene.id
 
 sum(rownames(min_stats_new) != gs_modules$gene.id) #should be 0
-gs_limma_geneList <- pchisq(-2*(log(gs_geneList) + log(limma_geneList)), df = 4, lower.tail = FALSE)
-names(gs_limma_geneList) <- gs_modules$gene.id
 
 comparative_enrichment <- comparative_enrich(limma_geneList, list(ACo = aco_geneList,
-                                                                  ACo_limma = aco_limma_geneList,
                                                                   GS = gs_geneList,
-                                                                  GS_limma = gs_limma_geneList,
                                                                   lean = lean_geneList),
                                              pathways.list, pathway.codes, genes.by.pathway)
 
 #Check which pathways to include
-bc_pathways <- c(#"Pancreatic cancer - Homo sapiens (human)", 
-                 #"Non-small cell lung cancer - Homo sapiens (human)", 
-                 #"Acute myeloid leukemia - Homo sapiens (human)", 
-                 #"Epstein-Barr virus infection - Homo sapiens (human)", 
-                 #"Viral carcinogenesis - Homo sapiens (human)", 
-                 #"Pathways in cancer - Homo sapiens (human)"
-                 "Parkinson disease - Homo sapiens (human)",
+bc_pathways <- c("Parkinson disease - Homo sapiens (human)",
                  "Pathways of neurodegeneration - multiple diseases - Homo sapiens (human)",
                  "Alzheimer disease - Homo sapiens (human)",
                  "Huntington disease - Homo sapiens (human)"
                  )
-other_pathways <- c(#"FoxO signaling pathway - Homo sapiens (human)",
-                    #"Hippo signaling pathway - Homo sapiens (human)", 
-                    #"NF-kappa B signaling pathway - Homo sapiens (human)", #AML
-                    #"JAK-STAT signaling pathway - Homo sapiens (human)", #AML
-                    #"EGFR tyrosine kinase inhibitor resistance - Homo sapiens (human)", #AML, NSCLC, PC
-                    #"Hedgehog signaling pathway - Homo sapiens (human)", #AML, PC
-                    #"Notch signaling pathway - Homo sapiens (human)", #AML, PC
-                    #"PI3K-Akt signaling pathway - Homo sapiens (human)", #AML
-                    #"Progesterone-mediated oocyte maturation - Homo sapiens (human)",
-                    #"Oocyte meiosis - Homo sapiens (human)",
-                    #"Rap1 signaling pathway - Homo sapiens (human)",
-                    #"Ras signaling pathway - Homo sapiens (human)", #PC
-                    #"Sphingolipid signaling pathway - Homo sapiens (human)",
-                    #"TGF-beta signaling pathway - Homo sapiens (human)", #AML, PC
-                    "Cell cycle - Homo sapiens (human)", #p53
-                    "p53 signaling pathway - Homo sapiens (human)", #HD, NSCLC, PC
+other_pathways <- c("Cell cycle - Homo sapiens (human)", #p53
+                    "p53 signaling pathway - Homo sapiens (human)", #HD
                     "Cellular senescence - Homo sapiens (human)", #p53
                     "Apoptosis - Homo sapiens (human)", #AD, PD, HD, p53
-                    "Wnt signaling pathway - Homo sapiens (human)", #AML, PC, AD
+                    "Wnt signaling pathway - Homo sapiens (human)", #AD
                     "Proteasome - Homo sapiens (human)", #PD, AD, HD
                     "Tyrosine metabolism - Homo sapiens (human)", #PD
                     "Oxidative phosphorylation - Homo sapiens (human)", #PD, AD, HD
@@ -506,11 +301,10 @@ for(pathway in append(bc_pathways, other_pathways)){
     geom_line(aes(cutoff, ACo), color = "red") +
     geom_line(aes(cutoff, lean), color = "blue") +
     geom_line(aes(cutoff, GS), color = "magenta") +
-    #geom_line(aes(cutoff, GS_limma), color = "cyan") +
     ylab("Cumulative Coverage (%)") +
     xlab("Cutoff of sorted gene list") +
     ggtitle(pathway) 
-  #subtitle = "Black: Limma, Blue: ACo-Limma, Red: ACo, Magenta: GS, Cyan: GS-Limma"
+  #subtitle = "Black: Limma, Blue: LEAN, Red: ACo, Magenta: GS"
   print(plot)
 }
 
