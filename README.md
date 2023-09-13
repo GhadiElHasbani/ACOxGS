@@ -1,1 +1,11 @@
 # ACOxGS
+
+## An Optimization of Gene-Level Subnetwork Identification Inspired by Ant Colony and GeneSurrounder
+
+### Abstract
+High-throughput experimental technologies in biomedical studies can help identify molecular targets and provide deeper insights into pathway perturbations. Classical omics data analysis, such as differential gene expression and pathway analyses, disregard interconnections between studied genes. Nevertheless, such interactions are crucial in cellular processes. Accordingly, there has been a recent interest in considering gene interactions rather than independent gene sets when looking for gene-disease associations through differential gene expression. The latter allows the identification of gene modules that underlie complex phenotypes in gene interaction networks. Existing methods either impose radius-based restrictions or grow modules freely at the expense of a statistical bias towards large modules. We propose a heuristic method inspired by Ant Colony Optimization to apply gene-level scoring and module identification using distance-based restrictions and penalties rather than radius-based restrictions. Testing and comparisons to other approaches is based on three different neurodegenerative diseases, namely Alzheimer’s, Parkinson’s, and Huntington’s diseases, over three independent experiments. Enrichment analysis is performed on three datasets, one corresponding to each disease. Concordance of gene-level scores, assessed by Spearman’s \(\rho\), are also reported across pairs of different subsets, one of which is used in the enrichment analysis, of an Alzheimer’s disease dataset. Results indicate that the proposed method generally shows superior stability in comparison to other tested methods. It produces stable and meaningful enrichment results in all three datasets which have different case to control proportions, sample sizes, and preprocessing.
+
+### Guide
+1. Download any missing dependecies using `packages_download.R`
+2. Perform module identification with ACOxGS, GS, and/or LEAN using your dataset of choice through sample code in `testrun.R` (includes KEGG network construction steps) and `networkX.ipynb` (for largest connected component extraction)
+3. Perform enrichment and/or cross-study concordance analyses using `enrichment.R` and `concordance.R`, respectively
