@@ -3,26 +3,9 @@
 #     Dependencies
 #######################
 
-#options(timeout = 10000000)
-#if (!require("BiocManager", quietly = TRUE))
-#    install.packages("BiocManager")
-#BiocManager::install("curatedBladderData")
-#BiocManager::install("curatedOvarianData")
-#BiocManager::install("GSAR")
-#BiocManager::install("GSEABenchmarkeR")
-#BiocManager::install("KEGGgraph")
-#BiocManager::install("CHRONOS")
-#BiocManager::install("graphite")
-#BiocManager::install("DOSE")
-#BiocManager::install("limma")
-
-#library(devtools)
-#install_github("GSEA-MSigDB/GSEA_R")
-
 library(dplyr)
 library(ggplot2)
 library(purrr)
-library(preprocessCore) # preprocessing (QN)
 require(pcaPP) # GS dependency
 library(igraph) # GS dependency
 library(limma) # DEA tool / GS dependency
@@ -32,9 +15,6 @@ library(org.Hs.eg.db)
 library(annotate) #map NCBI Gene IDs to gene symbols
 library(LEANR) # LEAN package
 library(doMC) # LEAN dependency
-library(DOSE) # Enrichment tool
-library(mlr3) # Importing benchmark data from OSF
-library(readr) # Importing benchmark data from OSF
 # For KEGG network
 library(BiocManager)
 library(org.Hs.eg.db)
@@ -238,63 +218,6 @@ aco_modules <- optimize_modules(df, KEGG_A_LCC, n_ants = 40, n_iter = 5, startin
 #gamma: n_iter = 5, starting_capacity = 1.0, n_cores = min(5, max_cores - 2), alpha = 0.6, beta = 1.2, n_resamples = 100, penalize_dist = TRUE
 
 #########################
-# Preprocess ACO results
-#########################
-
-aco_modules <- readRDS('aco_gamma_trial_9476_25.rds')
-
-limma_res <- acoCalcGeneTStats(df, class_labels, 100, 3)
-hist(limma_res$complete_res$adj.P.Val)
-limma_adj_pvals <- limma_res$complete_res$adj.P.Val
-names(limma_adj_pvals) <- rownames(limma_res$complete_res)
-
-all_stats <- data.frame()
-min_stats <- data.frame()
-tot_time <- c()
-tot_time_par <- c()
-min_oscc <- c()
-min_pdecay <- c()
-de_pvals <- c()
-modules <- list()
-filter_by <- 'p_decays'
-cutoff <- 0.05
-options(timeout=200)
-for(gene_name in names(aco_modules)){
-  gene <- aco_modules[[gene_name]]
-  de_pvals <- c(de_pvals, limma_adj_pvals[gene_name])
-  all_stats <- rbind(all_stats, gene$stats)
-  min_stats <- rbind(min_stats, gene$stats[which(gene$stats[,filter_by] == min(gene$stats[,filter_by]))[1],])
-  tot_time_par <- c(tot_time_par, gene$total_time)#sum(gene$stats[,'pDecay_times']))
-  tot_time <- c(tot_time, sum(gene$stats[,'pDecay_times']))
-  min_oscc <- c(min_oscc, gene$stats[which(gene$stats[,filter_by] == min(gene$stats[,filter_by]))[1],'osccs'])
-  min_pdecay <- c(min_pdecay,gene$stats[which(gene$stats[,filter_by] == min(gene$stats[,filter_by]))[1],'p_decays'])
-  modules[[gene_name]] <- gene$modules$modules[[which(gene$stats[,filter_by] == min(gene$stats[,filter_by]))[1]]]
-}
-colnames(min_stats) <- colnames(all_stats)
-rownames(min_stats) <- names(aco_modules)
-min_stats_new <- min_stats %>% mutate(p_fishers_log = -log10(p_fishers), 
-                                      bonf_adj = p_fishers_log >= -log10(cutoff/5),
-                                      p_fishers_bonf = vapply(p_fishers*5, FUN = min, 1),
-                                      p_des = de_pvals,
-                                      p_combs = pchisq(-2*(log(p_fishers) + log(p_des)), df = 4, lower.tail = FALSE),#pchisq(-2*(log(p_spheres) + log(p_decays) + log(p_des)), df = 6, lower.tail = FALSE),
-                                      bonf_adj_combs = p_combs <= cutoff)
-                                      #p_fishers_BH = p.adjust(p_fishers, method = "BH"),
-                                      #p_fishers_bonf = p.adjust(p_fishers, method = "bonferroni"),
-                                      #bonf_adj = p_fishers_bonf <= 0.05,
-                                      #BH_adj = p_fishers_BH <= 0.05)
-
-sum(min_stats_new$bonf_adj_combs)
-
-aco <- rownames(min_stats_new %>% filter(p_fishers <= cutoff) %>% arrange(p_fishers))
-aco <- rownames(min_stats_new %>% filter(bonf_adj_combs) %>% arrange(p_combs))
-#tf <- treat(lmFit(df, model.matrix(~factor(class_labels))))
-#aco2 <- aco[aco %in% rownames(tf$p.value[tf$p.value[,2] <= 0.05,])]
-
-aco_sig_genes <- rownames(min_stats_new %>% filter(bonf_adj == TRUE) %>% arrange(p_fishers))
-#saveRDS(aco_sig_genes, 'aco_sig_genes_42057_25.rds')
-#write.csv(aco_sig_genes, 'aco_sig_genes_42057_25.csv', row.names = FALSE)
-
-#########################
 #     GS
 #########################
 
@@ -314,129 +237,9 @@ gs_modules <- run_geneSurrounder(adj.matrix = KEGG_A_LCC,
 saveRDS(gs_modules, 'gs_results_{.....}_{seed - 120}.rds')
 
 #########################
-#  Preprocess GS results
+#     Module Graphs
 #########################
 
-gs_modules <- readRDS('gs_results_20291.rds')
-diam <- 18
-gs_modules_new <- gs_modules %>% mutate(p.Fisher_log = -log10(p.Fisher), 
-                                        bonf_adj = p.Fisher_log >= -log10(0.05/diam))
-                                        #p_fishers_bonf = p.adjust(p.Fisher, method = "bonferroni"),
-                                        #p_fishers_BH = p.adjust(p.Fisher, method = "BH"),
-                                        #bonf_adj = p_fishers_bonf <= 0.05,
-                                        #BH_adj = p_fishers_BH <= 0.05)
-sum(gs_modules_new$bonf_adj)
-
-gs_sig_genes <- (gs_modules_new %>% filter(bonf_adj == TRUE) %>% dplyr::select(gene.id))[,1]
-
-saveRDS(gs_sig_genes, 'gs_sig_genes_20291.rds')
-
-saveRDS(gs_modules$gene.id, 'universe_genes_20291.rds')
-
-#########################
-#     Analysis
-#########################
-
-
-######p_decay vs score
-#p_decay vs tau-b
-pdecay_taub <- ggplot(gs_modules, aes(observed.tau_b, p.Decay)) +
-  geom_point() +
-  ggtitle("GS")
-
-#p_decay vs oscc
-pdecay_oscc <- ggplot(all_stats, aes(osccs, p_decays)) +
-  geom_point() +
-  ggtitle("ACO")
-
-gridExtra::grid.arrange(pdecay_taub, pdecay_oscc, ncol = 2)
-
-######p_decay distribution
-p_dist <- ggplot(gs_modules, aes(p.Decay)) + 
-  geom_histogram(bins = 50) +
-  ggtitle("GS")
-
-p_dist_zoom <- ggplot(gs_modules, aes(p.Decay)) + 
-  geom_histogram(bins = 10) + 
-  xlim(0, 0.1) + 
-  ggtitle("GS")
-
-p_dist2 <- ggplot(all_stats, aes(p_decays)) + 
-  geom_histogram(bins = 50) + 
-  ggtitle("ACO")
-
-p_dist_zoom2 <- ggplot(all_stats, aes(p_decays)) + 
-  geom_histogram(bins = 10) + 
-  xlim(0, 0.1) +
-  ggtitle("ACO")
-
-gridExtra::grid.arrange(p_dist, p_dist_zoom, p_dist2, p_dist_zoom2, ncol = 2)
-
-ggplot(data.frame(gs_pdecay = gs_modules[,'p.Decay'], aco_min_pdecay = min_pdecay), aes(gs_pdecay, aco_min_pdecay)) +
-  geom_point() + 
-  ggtitle("ACO minimum p-decay vs GS p-decay")
-
-######Score distributions
-#tau-b distribution
-taubs <- ggplot(gs_modules, aes(observed.tau_b)) + 
-  geom_histogram(bins = 20) + 
-  ggtitle("GS")
-
-#oscc distribution
-osccs <- ggplot(all_stats, aes(osccs)) + 
-  geom_histogram(bins = 20) + 
-  ggtitle("ACO")
-
-gridExtra::grid.arrange(taubs, osccs, ncol = 2)
-
-ggplot(data.frame(tau_b = gs_modules[,'observed.tau_b'], min_oscc = min_oscc), aes(tau_b, min_oscc)) + 
-  geom_point() + 
-  ggtitle("tau-b vs minimum p-decay OSCC")
-
-######ACO time/iteration
-ggplot(all_stats, aes(pDecay_times)) + 
-  geom_density() +
-  xlab('times (seconds) / module') +
-  ggtitle("ACO time/iteration")
-
-######time per gene
-gs_times <- ggplot(gs_modules, aes(time)) + 
-  geom_density() +
-  xlab('times (seconds) / gene') +
-  ggtitle("GS time/gene")
-
-aco_times <- ggplot(data.frame(pdecay_time = tot_time), aes(pdecay_time)) + 
-  geom_density() +
-  xlab('times (seconds) / gene (no parallelization)') +
-  ggtitle("ACO time/gene")
-
-aco_times_par <- ggplot(data.frame(pdecay_time = tot_time_par), aes(pdecay_time)) + 
-  geom_density() +
-  xlab('times (seconds) / gene (parallelized)') +
-  ggtitle("Parallelized ACO time/gene")
-
-gridExtra::grid.arrange(gs_times, aco_times, aco_times_par, ncol = 1)
-
-gs_vs_aco <- ggplot(data.frame(GS = gs_modules[,'pdecay_time'], ACO = tot_time), aes(GS, ACO)) +
-  geom_point() + 
-  ggtitle("GS vs Unparallelized ACO time/gene")
-
-gs_vs_paco <- ggplot(data.frame(GS = gs_modules[,'pdecay_time'], ACO = tot_time_par), aes(GS, ACO)) +
-  geom_point() + 
-  ggtitle("GS vs Parallelized ACO time/gene")
-
-paco_vs_aco <- ggplot(data.frame(Unparallelized_ACO = tot_time, Parallelized_ACO = tot_time_par), aes(Parallelized_ACO, Unparallelized_ACO)) +
-  geom_point() + 
-  ggtitle("Unparallelized vs Parallelized ACO time/gene")
-
-gridExtra::grid.arrange(gs_vs_aco, gs_vs_paco, paco_vs_aco, ncol = 1)
-
-######Total time
-print(paste("GS total time (seconds):", sum(gs_modules[,"pdecay_time"])))
-print(paste("Unparallelized ACO total time (seconds):", sum(tot_time)))
-print(paste("Parallelized ACO total time (seconds):", sum(tot_time_par)))
-
-######Module Graphs
 library(visNetwork)
 
 #random module generator
