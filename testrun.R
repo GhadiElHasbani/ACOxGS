@@ -149,7 +149,7 @@ rownames(KEGG_A) <- xx[translateKEGGID2GeneID(rownames(KEGG_A), "hsa")]
 colnames(KEGG_A) <- xx[translateKEGGID2GeneID(colnames(KEGG_A), "hsa")]
 
 sum(rowSums(KEGG_A) == 0) # -> 2683 (p53), 2681 (GSE20291), 2681 (GSE5281_VCX), 2681 (GSE8762)
-#saveRDS(KEGG_A, "KEGG_A_.....rds")
+#saveRDS(KEGG_A, "Networks/KEGG_A_.....rds")
 
 #Make graph undirected
 for(i in 1:nrow(KEGG_A)){
@@ -164,20 +164,20 @@ for(i in 1:nrow(KEGG_A)){
 }
 isSymmetric(KEGG_A) # -> TRUE
 sum(rowSums(KEGG_A) == 0) # -> 1832 (p53), 1832 (GSE20291), 1832 (GSE5281_VCX), 1832 (GSE8762)
-#saveRDS(KEGG_A, "KEGG_A_undir_.....rds")
+#saveRDS(KEGG_A, "Networks/KEGG_A_undir_.....rds")
 
 ##########################
 # Reading RDS file to CSV
 ##########################
 
-am_rds <- readRDS("KEGG_A_undir_......rds")
-write.csv(am_rds, "KEGG_A_undir_......csv", row.names=TRUE)
+am_rds <- readRDS("Networks/KEGG_A_undir_......rds")
+write.csv(am_rds, "Networks/KEGG_A_undir_......csv", row.names=TRUE)
 
-am_rds <- readRDS("KEGG_A_undir_p53.rds")
-write.csv(am_rds, "KEGG_A_undir_p53.csv", row.names=TRUE)
+am_rds <- readRDS("NetworksKEGG_A_undir_p53.rds")
+write.csv(am_rds, "Networks/KEGG_A_undir_p53.csv", row.names=TRUE)
 
-am_rds <- readRDS("KEGG_A_undir_GE20291.rds")
-write.csv(am_rds, "KEGG_A_undir_GE20291.csv", row.names=TRUE)
+am_rds <- readRDS("Networks/KEGG_A_undir_GE20291.rds")
+write.csv(am_rds, "Networks/KEGG_A_undir_GE20291.csv", row.names=TRUE)
 
 #############################################
 # perform networkX LCC extraction --> python
@@ -187,8 +187,8 @@ write.csv(am_rds, "KEGG_A_undir_GE20291.csv", row.names=TRUE)
 # Importing LCC CSV & checking AM correctness
 #############################################
 
-#lcc<- as.matrix(read.csv('./KEGG_A_undir_....._LCC.csv', row.names = 1))
-
+#lcc<- as.matrix(read.csv('./Networks/KEGG_A_undir_....._LCC.csv', row.names = 1))
+lcc<- as.matrix(read.csv('./Networks/KEGG_A_undir_GE20291_LCC.csv', row.names = 1))
 #View(lcc)
 ncol(lcc)
 nrow(lcc)
@@ -209,12 +209,15 @@ source("OSCC.R")
 
 max_cores <- detectCores()
 
+seed <- 7
+dataset <- "20291"
 KEGG_A_LCC <- lcc                                     
 aco_modules <- optimize_modules(df, KEGG_A_LCC, n_ants = 40, n_iter = 5, starting_capacity = 1.0, 
                                 n_cores = min(5, max_cores - 2), alpha = 0.6, beta = 1.2, 
-                                seed = 1, n_resamples = 100, class_labels = class_labels, penalize_dist = TRUE)
+                                seed = seed, n_resamples = 100, class_labels = class_labels, penalize_dist = TRUE)
 
-#saveRDS(aco_modules, 'aco_gamma_trial_{.....}_{n_ants}_{seed}.rds')
+saveRDS(aco_modules, paste('Objects/Run ', seed, paste("/aco_gamma_trial", dataset, "40", seed, sep="_"), '.rds', sep = ''))
+saveRDS(aco_modules, 'aco_gamma_trial_20291_40_7.rds')
 #gamma: n_iter = 5, starting_capacity = 1.0, n_cores = min(5, max_cores - 2), alpha = 0.6, beta = 1.2, n_resamples = 100, penalize_dist = TRUE
 
 #########################
@@ -223,19 +226,20 @@ aco_modules <- optimize_modules(df, KEGG_A_LCC, n_ants = 40, n_iter = 5, startin
 
 source("GeneSurrounder/GeneSurrounder.R")
 source("GeneSurrounder/run_geneSurrounder.R")
+seed <- 127
 gs_modules <- run_geneSurrounder(adj.matrix = KEGG_A_LCC,
                                  gene_scores_per_sample = df,
                                  class_labels = class_labels,
                                  nresamples = 100,
-                                 seed = 121,
+                                 seed = seed,
                                  num.Sphere.resamples = 100,
                                  gene.id = names(aco_modules),
                                  decay_only = FALSE,
                                  #file_name = "gs_results_{.....}_{seed - 120}.csv", #<- fill before running
                                  cores = 1 # Set to 1 for Windows
 )
-saveRDS(gs_modules, 'gs_results_{.....}_{seed - 120}.rds')
-
+saveRDS(gs_modules, paste('Objects/Run ', seed - 120, paste('/gs_results',dataset, seed - 120, sep="_"), '.rds', sep = ''))
+saveRDS(gs_modules, 'gs_results_20291_7.rds')
 #########################
 #     Module Graphs
 #########################
@@ -347,8 +351,11 @@ runLEAN <- function(gene_scores_per_sample,
   return(LEANR::run.lean(gene_stats, int_network, verbose = TRUE, ranked = FALSE, n_reps = n_resamples, ncores = n_cores))
 }
 
-KEGG_A_LCC <- lcc                                     
-lean_modules <- runLEAN(df, KEGG_A_LCC, n_cores = NULL, seed = 3, 
+KEGG_A_LCC <- lcc    
+seed <- 3
+lean_modules <- runLEAN(df, KEGG_A_LCC, n_cores = NULL, seed = seed, 
                         n_resamples = 100, class_labels = class_labels)
 
 #saveRDS(lean_modules, 'lean_modules_.....rds')
+saveRDS(lean_modules, paste('Objects/Run ', seed, '/lean_modules_', seed, '.rds', sep = ''))
+
