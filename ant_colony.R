@@ -502,7 +502,8 @@ calc_pSphere <- function(gene.id,
 acoCalcGeneTStats <- function(expr,
                            classLabels,
                            numResamples,
-                           seed){
+                           seed,
+                           permutate = TRUE){
   # Calc gene level statistics
   # This code is being written using CurOvGradeKEGGnets[[2]]
   #
@@ -525,32 +526,37 @@ acoCalcGeneTStats <- function(expr,
   fit <-  treat(lmFit(expr,desMat))
   observedStats = as.data.frame(fit$t[,2])
   
-  print("Permutating labels and calculating resampled gene stats using limma...")
-  if(!is.null(seed)){
-    set.seed(seed)
+  if(permutate){
+    print("Permutating labels and calculating resampled gene stats using limma...")
+    if(!is.null(seed)){
+      set.seed(seed)
+    }
+    permStats <- sapply(1:numResamples,function(resampleLoopIndex){
+      
+      # Shuffle the phenotype labels
+      permLabels <- sample(classLabels,replace = FALSE)
+      
+      #Refit and recalculcate gene level statistics using permLabels
+      permDesMat <-  model.matrix(~factor(permLabels))
+      permFit <-  treat(lmFit(expr,permDesMat))
+      #print(head(permFit$t[,2]))
+      return(permFit$t[,2])
+      
+    })
+    
+    # Transpose permStats so the rows are resamplings
+    permStats <- t(permStats)
+    
+    # List and return
+    
+    geneTStats <- list(observed=observedStats, resampled = permStats, complete_res = topTreat(fit, coef = 2, number = nrow(observedStats)))
+    
+    
+  }else{
+    geneTStats <- list(observed=observedStats, complete_res = topTreat(fit, coef = 2, number = nrow(observedStats)))
   }
-  permStats <- sapply(1:numResamples,function(resampleLoopIndex){
-    
-    # Shuffle the phenotype labels
-    permLabels <- sample(classLabels,replace = FALSE)
-    
-    #Refit and recalculcate gene level statistics using permLabels
-    permDesMat <-  model.matrix(~factor(permLabels))
-    permFit <-  treat(lmFit(expr,permDesMat))
-    #print(head(permFit$t[,2]))
-    return(permFit$t[,2])
-    
-  })
-  
-  # Transpose permStats so the rows are resamplings
-  permStats <- t(permStats)
-  
-  # List and return
-  
-  geneTStats <- list(observed=observedStats, resampled = permStats, complete_res = topTreat(fit, coef = 2, number = nrow(observedStats)))
   
   return(geneTStats)
-  
 }
 
 optimize_modules <- function(gene_scores_per_sample,
