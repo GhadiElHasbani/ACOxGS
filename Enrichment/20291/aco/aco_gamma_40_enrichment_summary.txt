@@ -1,0 +1,18 @@
+Rank of disease pathway:
+
+"mean_rank_disease_path" "sd_rank_disease_path"
+3.8 1.03279555898864
+
+=============================================
+
+Number of significant pathways:
+
+"mean_n_sig_pathways" "sd_n_sig_pathways"
+42.2 4.61398839279954
+
+=============================================
+
+Number of signficant relevant pathways:
+
+"mean_n_sig_relevant_paths" "sd_n_sig_relevant_paths"
+3.4 0.699205898780101
