@@ -1,6 +1,8 @@
 source("ant_colony.R")
 
 library(dplyr)
+library(readr)
+library(tibble)
 library(ggplot2)
 library(limma) # DEA tool / GS dependency
 library(LEANR) # LEAN package
@@ -234,8 +236,8 @@ run_enrichment <- function(min_stats_new, gs_modules, diam, dataset_id, seed, n_
 #Example
 geo2kegg <- loadEData("geo2kegg", preproc = TRUE)
 
-dataset_id <- "5281_VCX"
-seeds <- 4:8
+dataset_id <- "20291"
+seeds <- 1:10
 
 for(seed in seeds){
   print(paste("================================= Run", seed, "========================================="))
@@ -248,6 +250,74 @@ for(seed in seeds){
   print("=================================================================================")
 }
 
+summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 0.05){
+  for(tool in c(paste("aco", trial, n_ants, sep = "_"), "gs", "lean", "limma")){
+    dfs <- list.files(path=paste("Enrichment", dataset_id, strsplit(tool, split = "_")[[1]][1], sep = '/'), pattern = paste(tool, ".*.csv", sep = ''), full.names = TRUE) %>% 
+      lapply(read_csv, col_types = cols(col_skip())) %>%
+      lapply(tibble::rownames_to_column, var = "rank") %>%
+      lapply(mutate, rank = as.integer(rank))
+    
+    #number of significant pathways
+    n_sig_pathways <- dfs %>% lapply(summarise, n_sig_pathways = length(rank[adj_p.value <= cutoff])) %>% 
+      bind_rows %>% 
+      summarise(mean_n_sig_pathways = mean(n_sig_pathways), sd_n_sig_pathways = sd(n_sig_pathways))
+    
+    #organizing relevant pathways
+    common_pathways <- c("Pathways of neurodegeneration - multiple diseases - Homo sapiens (human)",
+                         "Apoptosis - Homo sapiens (human)",
+                         "Proteasome - Homo sapiens (human)",
+                         "Oxidative phosphorylation - Homo sapiens (human)",
+                         "Protein processing in endoplasmic reticulum - Homo sapiens (human)",
+                         "Calcium signaling pathway - Homo sapiens (human)")
+    if(dataset_id == '20291'){
+      main_pathway <- "Parkinson disease - Homo sapiens (human)"
+      specific_pathways <- c("Tyrosine metabolism - Homo sapiens (human)",
+                          "Dopaminergic synapse - Homo sapiens (human)",
+                          "Mitophagy - animal - Homo sapiens (human)",
+                          "Ubiquitin mediated proteolysis - Homo sapiens (human)")
+    }else if(dataset_id == '5281VCX'){
+      main_pathway <- "Alzheimer disease - Homo sapiens (human)"
+      specific_pathways <- c("Autophagy - animal - Homo sapiens (human)",
+                          "Wnt signaling pathway - Homo sapiens (human)",
+                          "AGE-RAGE signaling pathway in diabetic complications - Homo sapiens (human)",
+                          "Insulin signaling pathway - Homo sapiens (human)")
+    }else if(dataset_id == '8762'){
+      main_pathway <- "Huntington disease - Homo sapiens (human)"
+      specific_pathways <- c("p53 signaling pathway - Homo sapiens (human)",
+                          "Autophagy - animal - Homo sapiens (human)",
+                          "RNA polymerase - Homo sapiens (human)",
+                          "Basal transcription factors - Homo sapiens (human)",
+                          "Glutamatergic synapse - Homo sapiens (human)",
+                          "Endocytosis - Homo sapiens (human)")
+    }
+    relevant_pathways <- c(main_pathway, common_pathways, specific_pathways)
+    
+    #number of signficant relevant pathways
+    sig_relevant_pathways <- dfs %>% 
+      lapply(summarise, n_sig_relevant_paths = sum(relevant_pathways %in% pathway.name[adj_p.value <= cutoff])) %>% 
+      bind_rows %>% 
+      summarise(mean_n_sig_relevant_paths = mean(n_sig_relevant_paths), sd_n_sig_relevant_paths = sd(n_sig_relevant_paths))
+    
+    #rank of disease pathway
+    rank_main_path <- dfs %>% 
+      lapply(summarise, rank_disease_path = rank[pathway.name == main_pathway]) %>% 
+      bind_rows %>%
+      summarise(mean_rank_disease_path = mean(rank_disease_path), sd_rank_disease_path = sd(rank_disease_path))
+    
+    #write results to summary file
+    file_path <- paste(paste("Enrichment", dataset_id, strsplit(tool, split = "_")[[1]][1], sep = '/'), "/", tool, "_enrichment_summary.txt", sep = '')
+    write("Rank of disease pathway:\n", file_path, append = TRUE)
+    write.table(rank_main_path, file = file_path, row.names = FALSE, append = TRUE)
+    write("\n=============================================\n", file_path, append = TRUE)
+    write("Number of significant pathways:\n", file_path, append = TRUE)
+    write.table(n_sig_pathways, file = file_path, row.names = FALSE, append = TRUE)
+    write("\n=============================================\n", file_path, append = TRUE)
+    write("Number of signficant relevant pathways:\n", file_path, append = TRUE)
+    write.table(sig_relevant_pathways, file = file_path, row.names = FALSE, append = TRUE)
+  }
+}
+
+summarize_enrich("20291")
 
 ####################################################
 #######   Using Coverage and KEGG pathways    ######
