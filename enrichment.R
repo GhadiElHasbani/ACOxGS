@@ -250,9 +250,13 @@ for(seed in seeds){
   print("=================================================================================")
 }
 
-summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 0.05){
+summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 0.05, seeds = 1:6){
   for(tool in c(paste("aco", trial, n_ants, sep = "_"), "gs", "lean", "limma")){
-    dfs <- list.files(path=paste("Enrichment", dataset_id, strsplit(tool, split = "_")[[1]][1], sep = '/'), pattern = paste(tool, ".*.csv", sep = ''), full.names = TRUE) %>% 
+    pattern <- ".*_["
+    for(seed in seeds){
+      pattern <- paste(pattern, seed, ",", sep = '')
+    }
+    dfs <- list.files(path=paste("Enrichment", dataset_id, strsplit(tool, split = "_")[[1]][1], sep = '/'), pattern = paste(tool, substr(temp, 1, nchar(temp) - 1), "].csv", sep = ''), full.names = TRUE) %>% 
       lapply(read_csv, col_types = cols(col_skip())) %>%
       lapply(tibble::rownames_to_column, var = "rank") %>%
       lapply(mutate, rank = as.integer(rank))
@@ -318,6 +322,7 @@ summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 
 }
 
 summarize_enrich("20291")
+summarize_enrich("5281VCX")
 
 ####################################################
 #######   Using Coverage and KEGG pathways    ######
