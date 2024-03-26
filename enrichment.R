@@ -1,5 +1,3 @@
-source("ant_colony.R")
-
 library(dplyr)
 library(readr)
 library(tibble)
@@ -12,6 +10,8 @@ library(GSAR) # p53 data
 library(GSEABenchmarkeR) # GSEABenchmark data
 library(org.Hs.eg.db)
 library(KEGGREST)
+
+source("ant_colony.R")
 
 setwd("~/Desktop/LAU/Capstone/ACOxGS/")
 
@@ -236,8 +236,8 @@ run_enrichment <- function(min_stats_new, gs_modules, diam, dataset_id, seed, n_
 #Example
 geo2kegg <- loadEData("geo2kegg", preproc = TRUE)
 
-dataset_id <- "20291"
-seeds <- 1:10
+dataset_id <- "8762"
+seeds <- 4:5
 
 for(seed in seeds){
   print(paste("================================= Run", seed, "========================================="))
@@ -256,7 +256,7 @@ summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 
     for(seed in seeds){
       pattern <- paste(pattern, seed, ",", sep = '')
     }
-    dfs <- list.files(path=paste("Enrichment", dataset_id, strsplit(tool, split = "_")[[1]][1], sep = '/'), pattern = paste(tool, substr(temp, 1, nchar(temp) - 1), "].csv", sep = ''), full.names = TRUE) %>% 
+    dfs <- list.files(path=paste("Enrichment", dataset_id, strsplit(tool, split = "_")[[1]][1], sep = '/'), pattern = paste(tool, substr(pattern, 1, nchar(pattern) - 1), "].csv", sep = ''), full.names = TRUE) %>% 
       lapply(read_csv, col_types = cols(col_skip())) %>%
       lapply(tibble::rownames_to_column, var = "rank") %>%
       lapply(mutate, rank = as.integer(rank))
@@ -323,6 +323,7 @@ summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 
 
 summarize_enrich("20291")
 summarize_enrich("5281VCX")
+summarize_enrich("8762", seeds = 1:5)
 
 ####################################################
 #######   Using Coverage and KEGG pathways    ######
