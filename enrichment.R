@@ -11,9 +11,10 @@ library(GSEABenchmarkeR) # GSEABenchmark data
 library(org.Hs.eg.db)
 library(KEGGREST)
 
+setwd("~/Desktop/LAU/Capstone/ACOxGS/")
+
 source("ant_colony.R")
 
-setwd("~/Desktop/LAU/Capstone/ACOxGS/")
 
 get_processed_data <- function(geo2kegg, dataset_id, seed, n_ants = 40, trial = 'gamma', adj_method = 'BH', cutoff = 0.05, n_resamples = 100){
   
@@ -236,21 +237,29 @@ run_enrichment <- function(min_stats_new, gs_modules, diam, dataset_id, seed, n_
 #Example
 geo2kegg <- loadEData("geo2kegg", preproc = TRUE)
 
-dataset_id <- "8762"
-seeds <- 4:5
 
-for(seed in seeds){
-  print(paste("================================= Run", seed, "========================================="))
-  res <- get_processed_data(geo2kegg, dataset_id, seed)
-  min_stats_new <- res[[1]]
-  gs_modules <- res[[2]]
-  diam <- res[[3]]
-  run_enrichment(min_stats_new, gs_modules, diam, sub("_", "", dataset_id), seed)
-  print("done")
-  print("=================================================================================")
+dataset_ids <- c("8762", "20291", "5281_VCX")
+seeds <- 1:10
+
+for(dataset_id in dataset_ids){
+  print(paste("================================= Dataset GSE", dataset_id, "========================================="))
+  for(seed in seeds){
+    print(paste("================================= Run", seed, "========================================="))
+    res <- get_processed_data(geo2kegg, dataset_id, seed)
+    min_stats_new <- res[[1]]
+    gs_modules <- res[[2]]
+    diam <- res[[3]]
+    run_enrichment(min_stats_new, gs_modules, diam, sub("_", "", dataset_id), seed)
+    print("done")
+    print("=================================================================================")
+  }
 }
 
-summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 0.05, seeds = 1:6){
+####################################################
+#######   Summarize Wilcoxon Rank Enrichment    ####
+####################################################
+
+summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 0.05, seeds = 1:10){
   for(tool in c(paste("aco", trial, n_ants, sep = "_"), "gs", "lean", "limma")){
     pattern <- ".*_["
     for(seed in seeds){
@@ -321,9 +330,10 @@ summarize_enrich <- function(dataset_id, trial = 'gamma', n_ants = 40, cutoff = 
   }
 }
 
+#Example
 summarize_enrich("20291")
 summarize_enrich("5281VCX")
-summarize_enrich("8762", seeds = 1:5)
+summarize_enrich("8762")
 
 ####################################################
 #######   Using Coverage and KEGG pathways    ######
