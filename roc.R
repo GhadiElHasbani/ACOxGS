@@ -10,10 +10,10 @@ library(GSEABenchmarkeR) # GSEABenchmark data
 library(org.Hs.eg.db)
 
 generate_ROC <- function(run, dataset, disease, variable_cutoff = FALSE){
-    aco <- read.csv(paste("Enrichment/Run ", run, "/", dataset, "/aco_gamma_40_enrichment_", dataset, "_", run,".csv", sep = "")) %>% arrange(pathway.name)
-    gs <- read.csv(paste("Enrichment/Run ", run, "/", dataset, "/gs_enrichment_", dataset, "_", run, ".csv", sep = "")) %>% arrange(pathway.name)
-    lean <- read.csv(paste("Enrichment/Run ", run, "/", dataset, "/lean_enrichment_", dataset, "_", run, ".csv", sep = "")) %>% arrange(pathway.name)
-    limma <- read.csv(paste("Enrichment/Run ", run, "/", dataset, "/limma_enrichment_", dataset, "_", run, ".csv", sep = "")) %>% arrange(pathway.name)
+    aco <- read.csv(paste("Enrichment/", dataset, "/aco/aco_gamma_40_enrichment_", dataset, "_", run,".csv", sep = "")) %>% arrange(pathway.name)
+    gs <- read.csv(paste("Enrichment/", dataset, "/gs/gs_enrichment_", dataset, "_", run, ".csv", sep = "")) %>% arrange(pathway.name)
+    lean <- read.csv(paste("Enrichment/", dataset, "/lean/lean_enrichment_", dataset, "_", run, ".csv", sep = "")) %>% arrange(pathway.name)
+    limma <- read.csv(paste("Enrichment/", dataset, "/limma/limma_enrichment_", dataset, "_", run, ".csv", sep = "")) %>% arrange(pathway.name)
     
     relevant_paths_HD <- c("RNA polymerase - Homo sapiens (human)", #HD
     "Basal transcription factors - Homo sapiens (human)", #HD
